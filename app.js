@@ -10,7 +10,6 @@ app.use(express.json())
 app.use(cors({
   
   origin: (origin, callback) => {
-    console.log(origin, 'hi')
     const ACCEPTED_ORIGINS = [
       'http://localhost:8080',
       'http://localhost:1234',
