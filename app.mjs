@@ -1,12 +1,24 @@
-const express = require('express') // require -> commonJS
-const crypto = require('node:crypto')
-const cors = require('cors')
+import express, { json } from 'express' // require -> commonJS
+import { randomUUID } from 'node:crypto'
+import cors from 'cors'
 
+import { validateMovie, validatePartialMovie } from './schemas/movies.mjs'
+
+//import movies from './movies.json' with { type: 'json' } experimentado por lo tanto no oficial y la sintaxis puede cambiar
+
+/*
+import fs from 'node:fs'
+const movies = JSON.parse(fs.readFileSync('./movies.json','utf-8'))
+otra forma de importar un json pero requiere importar fs
+*/
+
+//forma recomendada de importar un nodo
+import { createRequire } from 'node:module'
+const require = createRequire(import.meta.url)
 const movies = require('./movies.json')
-const { validateMovie, validatePartialMovie } = require('./schemas/movies')
 
 const app = express()
-app.use(express.json())
+app.use(json())
 app.use(cors({
   
   origin: (origin, callback) => {
@@ -68,7 +80,7 @@ app.post('/movies', (req, res) => {
 
   // en base de datos
   const newMovie = {
-    id: crypto.randomUUID(), // uuid v4
+    id: randomUUID(), // uuid v4
     ...result.data
   }
 

@@ -2,9 +2,10 @@
   "name": "despliege",
   "version": "1.0.0",
   "main": "app.js",
+  "tyepe" : "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.mjs"
   },
   "keywords": [],
   "author": "",
