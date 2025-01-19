@@ -7,7 +7,7 @@ export class MovieModel {
   static async getAll ({ genre })  {
     if (genre) {
       return movies.filter(
-        movie => movie.genre.some(g => g.toLowercase() == genre.toLowerCase())
+        movie => movie.genre.some(g => g.toLowerCase() == genre.toLowerCase())
       )
     }
     return movies
@@ -49,6 +49,6 @@ export class MovieModel {
 
     movies.splice(movieIndex, 1)
     
-    return movie[movieIndex]
+    return movies[movieIndex]
   }
 }
